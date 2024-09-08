@@ -1,79 +1,50 @@
-import {Costo_fijo} from './costo_fijo.js';
+// archivo listaCostoFijo.js
+import { Costo_fijo } from './costo_fijo.js';
+
 export class ListaCostoFijo {
-    
+    #_lista;
+
+    // Constructor
     constructor() {
-        this.lista = [];
+        this.#_lista = [];
     }
 
-    editarLista(posicion, losValores) {
-        if (this.comparacionObjetoPrincial_Editable(posicion, losValores)) {
-            let objetoEditar = this.lista[posicion];
-            objetoEditar.id = 3;
-            objetoEditar.nombre = losValores[0];
-            this.lista[posicion] = objetoEditar;
-        }
-
+    /**
+     * Metodo Get para obtener la lista.
+     * @returns {*}
+     */
+    get obtenerLista() {
+        return this.#_lista;
     }
 
-    comparacionObjetoPrincial_Editable(posicion, losValores){
-       // function objetosSonIguales(obj1, obj2) {
-//     // Obtener las claves de ambos objetos
-//     const clavesObj1 = Object.keys(obj1);
-//     const clavesObj2 = Object.keys(obj2);
-//
-//     // Verificar si ambos objetos tienen el mismo número de claves
-//     if (clavesObj1.length !== clavesObj2.length) {
-//         return false;
-//     }
-//
-//     // Verificar si todas las claves y valores son iguales
-//     for (let clave of clavesObj1) {
-//         // Comprobar si el objeto 2 tiene la misma clave
-//         if (!obj2.hasOwnProperty(clave)) {
-//             return false;
-//         }
-//
-//         // Comprobar si los valores son iguales
-//         if (obj1[clave] !== obj2[clave]) {
-//             return false;
-//         }
-//     }
-//
-//     // Si todas las comprobaciones pasan, los objetos son iguales
-//     return true;
-// }
-//
-// // Ejemplo de uso
-// const objeto1 = {
-//     nombre: 'Ana',
-//     edad: 20,
-//     profesion: 'Diseñadora'
-// };
-//
-// const objeto2 = {
-//     nombre: 'Ana',
-//     edad: 28,
-//     profesion: 'Diseñadora'
-// };
-//
-// const objeto3 = {
-//     nombre: 'Ana',
-//     edad: 30,
-//     profesion: 'Diseñadora'
-// };
-//
-// console.log(objetosSonIguales(objeto1, objeto2)); // Imprime: true
-// console.log(objetosSonIguales(objeto1, objeto3)); // Imprime: false
-        return true;
-    }
-
-    eliminarElemento(posicion) {
-
-    }
-
+    /**
+     * Metodo para agregar un elemento a la lista
+     * @param losValores
+     */
     creacionesElemento(losValores) {
-        let costo1 = new Costo_fijo(1,"Luz",3,2000);
-        this.lista.push(costo1);
+        let costoNuevo = new Costo_fijo(losValores[0], losValores[1], losValores[2], losValores[3]);
+        this.#_lista.push(costoNuevo);
     }
 
+    /**
+     * Metodo Editar un elemento en la lista
+     * @param posicion
+     * @param losValores
+     */
+    editarLista(posicion, losValores) {
+        let item = this.#_lista.find(elemento => elemento.index === posicion);
+        if (item) {
+            item.nombre = losValores[1];
+            item.valorUnitario = losValores[2];
+            item.cantidad = losValores[3];
+        }
+    }
+
+    /**
+     * Metodo para eliminar.
+      * @param rowIndex
+     */
+    eliminarElemento(rowIndex) {
+        this.#_lista.splice(rowIndex, 1);
+    }
 }
