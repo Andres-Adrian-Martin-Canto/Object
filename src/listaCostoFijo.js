@@ -32,12 +32,14 @@ export class ListaCostoFijo {
      * @param losValores
      */
     editarLista(posicion, losValores) {
-        let item = this.#_lista.find(elemento => elemento.index === posicion);
+        let item = this.#_lista[posicion];
         if (item) {
-            item.nombre = losValores[1];
-            item.valorUnitario = losValores[2];
-            item.cantidad = losValores[3];
+            item.nombre = losValores[0];
+            item.valorUnitario = losValores[1];
+            item.cantidad = losValores[2];
         }
+        // Se remplaza por los nuevos valores
+        this.#_lista[posicion] = item;
     }
 
     /**
