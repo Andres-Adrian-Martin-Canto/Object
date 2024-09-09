@@ -15,6 +15,7 @@ for (let input of inputs) {
     // Obtener el índice de la fila dentro del tbody
     const rowIndex = Array.from(row.parentNode.children).indexOf(row);
     // Si esta dentro de la lista se manda a editar
+    rowInputs[3].value = Number(rowInputs[2].value) * Number(rowInputs[1].value);
     if (listaObjetosCostoFijo.obtenerLista.length - 1 >= rowIndex) {
       console.log('Se mando a editar');
       let valores = [rowInputs[0].value, rowInputs[1].value, rowInputs[2].value];
